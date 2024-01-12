@@ -11,6 +11,10 @@ $(".txt-btn1").onclick = () => {
   var diem3 = $("#txt-diem3").value * 1;
   var diemTB = 0;
   var xetDiem = "";
+  if (diem1 == "" || diem2 == "" || diem3 == "" || diemChuan == "" || khuVuc == "" || doiTuong == "" ) {
+    alert("Bạn hãy nhập đầy đủ thông tin vào ô bên dưới !");
+return
+  }
   diemTB = khuVuc + doiTuong + (diem1 + diem2 + diem3);
   ketQua = $(".txt-ketQua1");
   if (diem1 === 0 || diem2 === 0 || diem3 === 0) {
@@ -30,7 +34,10 @@ $(".txt-btn2").onclick = () => {
   var soKw = $("#txt-soKw").value * 1;
   var ketQua = $(".txt-ketQua2");
   var tong = 0;
-
+  if (soKw == "" || hoTen == "") {
+    alert("Bạn hãy nhập đầy đủ thông tin vào ô bên dưới !");
+    return
+  }
   switch (true) {
     case soKw <= 50:
       tong = soKw * 500; // Giá cước cho 50 KW đầu là 10$
@@ -62,16 +69,20 @@ $(".txt-btn3").onclick = () => {
   var ketQua = $(".txt-ketQua3");
 
   tong = 0;
-
+  if (hoTen2 == "" || tongThuNhapNam == "" || user == "") {
+    alert("Bạn hãy nhập đầy đủ thông tin vào ô bên dưới !");
+    return
+  }
+  if (tongThuNhapNam < 3000000) {
+    alert("Tổng thu nhập năm phải lớn 4 triệu");
+  }
   if (tongThuNhapNam <= 9000000 && tongThuNhapNam >= 4000000) {
     tong = tongThuNhapNam * 0.02 + 20000 - user * 30000;
   } else if (tongThuNhapNam >= 10000000 && tongThuNhapNam <= 49000000) {
     tong = tongThuNhapNam * 0.03 - user * 60000;
-  }
-  else if (tongThuNhapNam >=  50000000 && tongThuNhapNam <=  99000000) {
+  } else if (tongThuNhapNam >= 50000000 && tongThuNhapNam <= 99000000) {
     tong = tongThuNhapNam * 0.04 - user * 100000;
-  }
-  else if (tongThuNhapNam >=  100000000 && tongThuNhapNam <=  2000000000) {
+  } else if (tongThuNhapNam >= 100000000 && tongThuNhapNam <= 2000000000) {
     tong = tongThuNhapNam * 0.09 - user * 20000;
   }
   ketQua.innerHTML = ` Họ và tên: ${hoTen2}; Tiền thuế thu nhập cá nhân: ${new Intl.NumberFormat(
@@ -93,6 +104,7 @@ $(".txt-btn4").onclick = () => {
   var tinhTien = 0;
   var giaTienMacDinhUser = 25000;
   var giaTienMacDinhCompany = 90000;
+ 
   if (select === "user" && maSoKenh === 0) {
     tinhTien = giaTienMacDinhUser;
   } else if (select === "user" && maSoKenh >= 1) {
